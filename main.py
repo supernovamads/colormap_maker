@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import pandas as pd
 
-album_cover = 'portugaltheman.jpg'
+album_cover = 'artwork/portugaltheman.jpg'
 
-data = pd.read_csv('lvlphysicalproperties2014.dat',sep='\s+',skiprows=30,names=['name','RA','Dec','distance','T','O/H','O/H_err',
+data = pd.read_csv('test/galaxyproperties.dat',sep='\s+',skiprows=30,names=['name','RA','Dec','distance','T','O/H','O/H_err',
                                                                                 'flag_marble','method','A_FUV','flag_hao','logM'])
 
 extracted_colors = colorgram.extract(album_cover,32)[::-1]
