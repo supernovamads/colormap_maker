@@ -8,6 +8,8 @@ Created on Fri Sep 24 15:23:27 2021
 import requests
 import json
 from urllib.parse import quote
+import logging
+import http.client
 
 artist = 'Portugal the Man'
 album= 'Woodstock'
@@ -16,9 +18,7 @@ query_term = "%s %s" % (artist, album)
 url = "https://itunes.apple.com/search?term=%s&media=music&entity=album" % quote(query_term)
 
 
-import logging
 
-import http.client
 http.client.HTTPConnection.debuglevel = 1
 
 # You must initialize logging, otherwise you'll not see debug output.
