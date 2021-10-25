@@ -31,6 +31,6 @@ requests_log.propagate = True
 
 
 
-response = requests.get(url).json()
+response = requests.get(url,timeout=5).json()
 
 
