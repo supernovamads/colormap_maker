@@ -11,8 +11,15 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import pandas as pd
+from artworkgrabber import artist_album_grabber
 
-album_cover = 'artwork/portugaltheman.jpg'
+artist = input('Name of artist: ')
+album = input('Name of album: ')
+
+
+album_cover = artist_album_grabber(artist,album)
+
+
 
 data = pd.read_csv('test/galaxyproperties.dat',sep='\s+',skiprows=30,names=['name','RA','Dec','distance','T','O/H','O/H_err',
                                                                                 'flag_marble','method','A_FUV','flag_hao','logM'])
