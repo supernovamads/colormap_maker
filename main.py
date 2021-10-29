@@ -13,6 +13,7 @@ import matplotlib.image as mpimg
 import pandas as pd
 from artworkgrabber import artist_album_grabber
 
+#Will eventually want to put all of this in a function because inline inputs are gross
 artist = input('Name of artist: ')
 album = input('Name of album: ')
 
