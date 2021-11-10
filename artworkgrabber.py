@@ -39,7 +39,7 @@ def artist_album_grabber(artist,album):
     print('NOW DOWNLOADING THE ARTWORK')
     
     artwork_request = urllib.request.urlopen(artwork_url, timeout=5).read()
-    artwork_filename = 'artwork/'+artist.replace(' ','').lower()+'_'+album.replace(' ','').lower()+'.jpg'
+    artwork_filename = 'artwork/'+artist.replace(' ','').lower()+'_'+''.join(jk for jk in album if jk.isalnum())+'.jpg'
     with open(artwork_filename, 'wb') as f:
         try:
             f.write(artwork_request)
