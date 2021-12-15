@@ -30,6 +30,7 @@ class AlbumCover:
         self.artist = artist
         self.album = album
         self.info = info
+        self.artworkpath = None
     def info_retriever(self):
         if self.info == None:
             query_term = "%s %s" % (self.artist, self.album)
@@ -43,7 +44,10 @@ class AlbumCover:
             print('info has already been collected')
             pass
     def download_artwork(self):
-        artwork = artist_album_grabber(self.artist,self.album)
+        if self.artworkpath == None:
+            self.artworkpath = artist_album_grabber(self.artist,self.album)
+        else:
+            print('Path already exists')
         
 data = pd.read_csv('test/galaxyproperties.dat',sep='\s+',skiprows=30,names=['name','RA','Dec','distance','T','O/H','O/H_err',
                                                                                 'flag_marble','method','A_FUV','flag_hao','logM'])
