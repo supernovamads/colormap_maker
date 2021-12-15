@@ -12,16 +12,39 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import pandas as pd
 from artworkgrabber import artist_album_grabber
+import requests
+import json
+import urllib.request
+from urllib.parse import quote
 
 #Will eventually want to put all of this in a function because inline inputs are gross
-# artist = input('Name of artist: ')
-# album = input('Name of album: ')
+artist = input('Name of artist: ')
+album = input('Name of album: ')
 
 
 album_cover = artist_album_grabber(artist,album)
 # album_cover = 'artwork/passionpit.jpg'
 
-
+class AlbumCover:
+    def __init__(self,artist,album,info=None):
+        self.artist = artist
+        self.album = album
+        self.info = info
+    def info_retriever(self):
+        if self.info == None:
+            query_term = "%s %s" % (self.artist, self.album)
+            url = "https://itunes.apple.com/search?term=%s&media=music&entity=album" % quote(query_term)
+            try:
+                response = requests.get(url,timeout=5).json()
+                self.info = response
+            except:
+                print('Something went wrong')
+        else:
+            print('info has already been collected')
+            pass
+    def download_artwork(self):
+        artwork = artist_album_grabber(self.artist,self.album)
+        
 data = pd.read_csv('test/galaxyproperties.dat',sep='\s+',skiprows=30,names=['name','RA','Dec','distance','T','O/H','O/H_err',
                                                                                 'flag_marble','method','A_FUV','flag_hao','logM'])
 
